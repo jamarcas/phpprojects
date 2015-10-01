@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>TIPO ENTERO VARIABLES PHP</title>
+	<title>TIPO ENTERO VARIABLES PHP MODIFICADO</title>
 </head>
 <body>
 	<?php
