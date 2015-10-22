@@ -36,7 +36,7 @@
 				//Array para el Juego Modificado
 				"tipo2"=>array(
 					"sp"=>"Juego Modificado",
-					"en"=>"Game Modified"
+					"en"=>"Game Modified",
 				),
 				//Array para el Juego de Niños
 				"tipo3"=>array(
@@ -48,13 +48,12 @@
 		//Array para las instrucciones del juego.
 		"instrucciones"=>array(
 			"sp"=>"Instrucciones",
-			"en"=>"Instuctions"
+			"en"=>"Instuctions",
 		)
 	)
 ?>
 
 
-<!DOCTYPE html>
 <html>
 	<head>
 		<title>Menu Proyecto01</title>
@@ -98,22 +97,10 @@
 				            	<li>
 				            		<a href="#">
 				            			<?php 
-				        					echo $menu["tipoJuego"]["submenu"]["tipo1"][$lang];
-					        			?>
-				            		</a>
-				            	</li>
-				            	<li>
-				            		<a href="#">
-				            			<?php 
-				        					echo $menu["tipoJuego"]["submenu"]["tipo2"][$lang];
-					        			?>
-				            		</a>
-				            	</li>
-				            	<li>
-				            		<a href="#">
-				            			<?php 
-				        					echo $menu["tipoJuego"]["submenu"]["tipo3"][$lang];
-					        			?>
+				        					foreach($menu["tipoJuego"]["submenu"] as $clave => $valor){
+				        						echo $valor["$lang"]."<br>";
+				        					}
+				        				?>
 				            		</a>
 				            	</li>
 			          		</ul>
