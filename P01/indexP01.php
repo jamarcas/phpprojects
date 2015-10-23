@@ -59,9 +59,10 @@
 		<title>Menu Proyecto01</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	</head>
 	<body>
 		<nav class="navbar navbar-inverse">
@@ -93,16 +94,12 @@
 			    				<span class="caret">
 			    				</span>
 			    			</a>
-			        		<ul class="dropdown-menu">
-				            	<li>
-				            		<a href="#">
-				            			<?php 
-				        					foreach($menu["tipoJuego"]["submenu"] as $clave => $valor){
-				        						echo $valor["$lang"]."<br>";
-				        					}
-				        				?>
-				            		</a>
-				            	</li>
+			        		<ul class="dropdown-menu" role="menu">
+		            			<?php foreach($menu["tipoJuego"]["submenu"] as $clave => $valor){?>
+		        					<li><a href="#">
+		        						<?php echo $valor[$lang]."<br>";?>
+		        					</a></li>
+		        				<?php }?>
 			          		</ul>
 			        	</li>
 			        	<li>
