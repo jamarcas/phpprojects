@@ -20,7 +20,7 @@
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-		
+		<link href="./css/dado.css" rel="stylesheet" type="text/css" >
 	</head>
 	<body>
 		<nav class="navbar navbar-inverse">
@@ -71,7 +71,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-2">
-							<img src="./imagenes/dadoCara1.png" width=70px>
+							<img src="./imagenes/dadoCara1.png">
 						</div>
 						<div class="col-md-2">
 							<img src="./imagenes/dadoCara2.png" width=70px>
@@ -95,7 +95,7 @@
 		<div class="panel panel-default">
 			<div class="panel_heading" ><b>Dado Aleatorio</b></div>
   			<div class="panel-body">
-				<div class="container footer">
+				<div class="mycontainer footer">
 					<div class="row no-gutter">
 						<div class="col-md-2 col-centered" >
 							<!--Llamamos a la función aleatoria que tenemos en el archivo dado.php-->
