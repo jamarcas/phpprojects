@@ -1,0 +1,12 @@
+b{
+    font-size:23px;
+    color:blue;
+}
+
+img{
+    opacity:0.4;
+    width:60px;
+    box-shadow: 3px 3px 1px #888;
+    margin: 10px 0 0 5px;
+}
+
