@@ -4,9 +4,13 @@ b{
 }
 
 img{
-    opacity:0.4;
-    width:60px;
+    opacity:1;
+    width:100px;
     box-shadow: 3px 3px 1px #888;
-    margin: 10px 0 0 5px;
+    margin: 10px 5px 5px 10px;
 }
+
+.dado3{opacity:0.6;}
+.dado12{margin-left:36%;}
+.operacion{margin-left:20%;}
 

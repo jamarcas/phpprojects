@@ -25,7 +25,7 @@
 			    <div>
 			    	<!--Creamos la lista con los elementos que contiene nuestro menú-->
 			    	<ul class="nav navbar-nav nav-pills nav-stacked">
-			    		<li class="active">
+			    		<li>
 			    			<a href="index.php"><!--Nos referenciará a otra página-->
 			    				<!--Accedemos al array multidimensional portada dentro de menú-->
 			    				<?=$menu["portada"][$lang]?>
@@ -46,7 +46,7 @@
 		        				<?php }?>
 			          		</ul>
 			        	</li>
-			        	<li>
+			        	<li  class="active">
 			        		<a href="instrucciones.php">
 			        			<?=$menu["instrucciones"][$lang]?>
 			        		</a>

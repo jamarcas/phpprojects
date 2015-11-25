@@ -7,27 +7,28 @@
 
 <!-- Incluimos tanto config.php como dado.php -->
 <?php
-    require_once ('config.php');
-    require_once ('dado.php');
+    require_once ('lib/config.php');
+    require_once ('lib/dado.php');
 
 	session_start();
 	
 	if( !empty($_POST) )
 	{
 		$errors = array(); // declaramos un array para almacenar los errores
+		
 		if(empty($_POST['nombre']) || empty($_POST['apellidos']) || empty($_POST['edad']))
 		{
 			if(empty($_POST['nombre']))
 			{
-				$errors[1] = '<span>No ha introducido su nombre</span>';
+				$errors[1] = "<span style='color:red;'>No ha introducido su nombre</span>";
 			}
 			else if(empty($_POST['apellidos']))
 			{
-				$errors[2] = '<span>No ha introducido sus apellidos</span>';
+				$errors[2] = "<span style='color:red;'>No ha introducido sus apellidos</span>";
 			}
 			else if(empty($_POST['edad']))
 			{
-				$errors[3] = '<span>No ha introducido su edad</span>';
+				$errors[3] = "<span style='color:red;'>No ha introducido su edad</span>";
 			}
 		}
 		else if(!empty($_POST['nombre']) && !empty($_POST['apellidos']) && !empty($_POST['edad']))
@@ -36,10 +37,8 @@
 			$nombre = $_POST['nombre'];
 			$apellidos = $_POST['apellidos'];
 			$edad = $_POST['edad'];
-				var_dump($_POST);
-			$_SESSION['jugador']= "SI";
+			$_SESSION['jugador'] = "SI";
 			header ("Location: juego.php");
-			
 		
 		}
 		else
@@ -112,7 +111,7 @@
 			          		</ul>
 			        	</li>
 			        	<li>
-			        		<a href="#">
+			        		<a href="instrucciones.php">
 			        			<?=$menu["instrucciones"][$lang]?>
 			        		</a>
 		        		</li>
@@ -142,6 +141,7 @@
 									<input type="text" name="edad" value="" class="form-control" style="width: 450px">
 									<?php echo $errors[3];?>
 								</div>
+								<br/>
 								<div>
 									<input type="submit" value="Enviar Datos" name="enviar" class="btn btn-primary">
 									<?php echo $result?>

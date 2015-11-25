@@ -6,16 +6,24 @@
 <!-- Estructura de nuestro juego.-->
 
 <?php
-    require_once ('config.php');
-    require_once ('dado.php');
-    require_once ('dado1al6.php');
-    require_once ('dado1al3.php');
-    
+    require_once ('lib/config.php');
+    require_once ('lib/dado.php');
+
 	session_start();
 	
 	$nombre = $_POST['nombre'];
 	$apellidos = $_POST['apellidos'];
-
+	
+	var_dump($_POST);
+	
+	$juego= new Juego();
+	
+	$dado1=$juego->dadoAleatorio(3);
+	$dado2=$juego->dadoAleatorio(3);
+	$dado3=$juego->dadoAleatorio(3);
+	$dado4=$juego->dadoAleatorio(6);
+	$dado5=$juego->dadoAleatorio(6);
+	$dado6=$juego->dadoAleatorio(12);
 ?>
 
 <!DOCTYPE html>
@@ -28,44 +36,11 @@
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/desactivarDado.js"></script>
 		<link href="./css/dado.css" rel="stylesheet" type="text/css" >
-		<style>
-			#dados1 {
-			    width: 60%;
-			}
-			#dados2 {
-			    width: 60%;
-			}
-			#dados3 {
-				padding:50px;
-			    width: 100%;
-			}
-			#capa1{ position:absolute; z-index:1; }
-			#capa2{ position:absolute; z-index:1;  width:200px; height:200px; }
-			
-			.izquierdo{
-				height:200%;
-				width:50%;
-				float:left;
-				text-align:center;
-			}
-			.derecho{
-				height:200%;
-				width:50%;
-				float:right;
-				text-align:center;
-			}
-			#texto {
-			    position:absolute;
-				margin-left:86px;
-				margin-top:20px;
-				font-size:25px;
-			    z-index: 2;
-			}
-			#imagen {
-			    position:absolute;
-			    margin-left:60px;
-			    z-index: 1;
+		<style type="text/css">
+			body{
+				background:#66a3ff;
 			}
 		</style>
 	</head>
@@ -112,82 +87,66 @@
 			    </div>
 			</div>
 		</nav>
-		<div class="panel izquierdo">
-			<div class="panel_heading"><b>Dados</b></div>
-  			<div class="panel-body">
-				<div class="container-fluid">
-					<?php
-						$dado1=dadoAleatorio1al6();
-						echo "<br>";
-						$dado2=dadoAleatorio1al6();
-						echo "<br>";
-						$dado3=dadoAleatorio1al6();
-						echo "<br>";
-						$dado4=dadoAleatorio1al3();
-						echo "<br>";
-						$dado5=dadoAleatorio1al3();
-						echo "<br>";
-						$dado6=dadoAleatorio();
-						echo "<br>";
-					?>
-					<div id="dados1" >
-						<div class="col-md-4" >
-							<img src="./imagenes/dadoCara<?=$dado1?>.png" width=70px>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-6">
+					<div style="width:800px; margin:0 auto;">
+						<div class="col-md-2" >
+							<img src="./imagenes/dadoCara<?=$dado1?>.png" class="dado3" value="<?=$dado1?>">
 						</div>
-						<div class="col-md-4" >
-							<img src="./imagenes/dadoCara<?=$dado2?>.png" width=70px>
+						<div class="col-md-2" >
+							<img src="./imagenes/dadoCara<?=$dado2?>.png" class="dado3" value="<?=$dado2?>">
 						</div>
-						<div class="col-md-4" >
-							<img src="./imagenes/dadoCara<?=$dado3?>.png" width=70px>
+						<div class="col-md-2" >
+							<img src="./imagenes/dadoCara<?=$dado3?>.png" class="dado3" value="<?=$dado3?>">
+						</div>
+						<div class="col-md-2" >
+							<img src="./imagenes/dadoCara<?=$dado4?>.png" class="dado6" value="<?=$dado4?>">
+						</div>
+						<div class="col-md-2">
+							<img src="./imagenes/dadoCara<?=$dado5?>.png" class="dado6" value="<?=$dado5?>">
 						</div>
 					</div>
-					<div  id="dados2">
-						<div class="col-md-6" >
-							<img src="./imagenes/dadoCara<?=$dado4?>.png" width=70px>
+					<div style="width:800px; margin:0 auto;">
+						<div class="col-md-12" >
+							<img src="./imagenes/dodecaedro<?=$dado6?>.png" class="dado12">
+						</div>
+					</div>
+					<div style="width:800px; margin:0 auto;">
+						<div class="col-md-6">
+							<img src="./imagenes/suma.png" class="operacion" value="+">
 						</div>
 						<div class="col-md-6">
-							<img src="./imagenes/dadoCara<?=$dado5?>.png" width=70px>
-						</div>
-					</div>
-					<div  id="dados3">
-						<div class="col-md-12" >
-							<div id="imagen">
-								<img src="./imagenes/dodecaedro.png" width=150px>
-							</div>
-							<div id="texto">
-								<p><?=$dado6?></p>
-							</div>
+							<img src="./imagenes/resta.png" class="operacion" value="-">
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-		<div class="panel derecho">
-			<div class="panel_heading"><b>Resultados</b></div>
-  			<div class="panel-body">
-				<div class="container-fluid">
-						<form name="formulario" method="get" action="calcula.php">
+				<div class="col-xs-6">
+					<div id="jugada">
+						<form name="formulario" method="get" action="lib/calcula.php">
 							<!-- Elementos ocultos dentro de nuestro HTML -->
-							<input type="hidden" name="dado1" value="<?=$dado1?>">
-							<input type="hidden" name="dado2" value="<?=$dado2?>">
-							<div class="col-md-6 col-centered" >
-								<b>Primer Dado</b>
-								<input name="numero1" type="text">
-							</div>
-							<div class="col-md-6 col-centered" >
-								<b>Segundo Dado</b>
-								<input name="numero2" type="text">
-							</div>
-							</br>
-							<div class="col-md-6"  style="float:left;">
-								<b>+</b>
-								<input type="radio" name="calculo" value="+">
-								<b>-</b>
-								<input type="radio" name="calculo" value="-">
-							</div>
-							</br>
-							<div class="col-md-6"   style="float:rigth;">
-								<input type="submit">
+							<input type="hidden" name="dado1Jugada" value="<?=$dado1?>">
+							<input type="hidden" name="dado1" value="">
+							<input type="hidden" name="operacion1" value="">
+							
+							<input type="hidden" name="dado2Jugada" value="<?=$dado2?>">
+							<input type="hidden" name="dado2" value="">
+							<input type="hidden" name="operacion2" value="">
+							
+							<input type="hidden" name="dado3Jugada" value="<?=$dado3?>">
+							<input type="hidden" name="dado3" value="">
+							<input type="hidden" name="operacion3" value="">
+							
+							<input type="hidden" name="dado4Jugada" value="<?=$dado4?>">
+							<input type="hidden" name="dado4" value="">
+							<input type="hidden" name="operacion4" value="">
+							
+							<input type="hidden" name="dado5Jugada" value="<?=$dado5?>">
+							<input type="hidden" name="dado5" value="">
+		
+							<input type="hidden" name="dado6" value="<?=$dado6?>">
+							<div id="btn-jugada">
+								
 							</div>
 						</form>	
 					</div>
