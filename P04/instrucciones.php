@@ -1,5 +1,5 @@
 <?php 
-    require_once ('config.php');
+    require_once ('lib/config.php');
 ?>
 
 <!DOCTYPE html>
@@ -12,6 +12,17 @@
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<style>
+		    body{
+		        background:#66a3ff;
+		        font-family: Comic;
+		        color:blue;
+		        background-image:url('imagenes/dados.png');
+				background-size:38%;
+				background-position:right 55px;
+				background-repeat:no-repeat;
+		    }
+		</style>
     </head>
     <body>
         <nav class="navbar navbar-inverse">
