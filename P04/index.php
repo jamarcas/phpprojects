@@ -48,21 +48,27 @@
 				$jugador->setEdad($_POST['edad']);
 			}
 		}
-		if(sizeof($errors) == 0){
+		if(sizeof($errors) == 0)
+		{
 			//Si existe el POST jugador
-			if (isset($_POST['jugador'])) {
-				//Creamos una sesión llamada jugador y le asignamos el nombre
-				$jugador->setNombre($_POST['nom']);
-			  	$_SESSION['jugador'] = $jugador;
+			if (isset($_POST['jugador'])) 
+			{
+				if(!isset($_SESSION['jugador']))
+				{
+					//Ponemos nombre al jugador
+					$jugador->setNombre($_POST['nombre']);
+					//Inicializamos jugador
+				  	$_SESSION['jugador'] = $jugador;
+				}
 			}
-			//Si la sesion existe
-			if (isset($_SESSION['jugador'])){
+			/*/Si está creada la sesión jugador, inicializamos objeto $jugador
+			if(isset($_SESSION['jugador'])){
 				$jugador = $_SESSION['jugador'];
-			}
+			}*/
 			//Según la edad es el Juego Math Dice o Math Dice PLUS
 			$edad = $_POST['edad'];
-			echo "";
-			if($edad < 10){
+			if($edad < 10)
+			{
 				header ("Location: juego.php");
 			}
 			else if ($edad >= 10)

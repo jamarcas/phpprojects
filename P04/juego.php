@@ -22,17 +22,12 @@
 	$dado5=$juego->dadoAleatorio(6);
 	$dado6=$juego->dadoAleatorio(12);
 	
-	if (!isset($_SESSION['jugador'])) {
-	  echo "No existe la sesión";
-	} else {
-		//Si existe $jugador
-		if(isset($jugador)){
-			//Asigamos la sesión
-			$jugador = $_SESSION['jugador'];
-		}else{
-			echo "No hay jugador";
-		}
+	if (isset($_SESSION['jugador'])) {
+		$jugador = $_SESSION['jugador'];
+	}else{
+		echo "No hay sesión";
 	}
+	var_dump($_SERVER['jugador']);
 ?>
 
 <!DOCTYPE html>
@@ -103,7 +98,7 @@
 			        		</a>
 		        		</li>
 			      	</ul>
-			      	<p class="navbar-text pull-right">Bienvenido <?=$nombre;?>
+			      	<p class="navbar-text pull-right">Bienvenido <?=$jugador->getNombre();?>
 		      		</p>
 			    </div>
 			</div>

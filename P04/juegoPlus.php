@@ -22,10 +22,10 @@
 	$dado5=$juego->dadoAleatorio(6);
 	$dado6=$juego->dadoAleatorio(12);
 	
-	if(isset($jugador)){
-		$nombre = $_SESSION['jugador'];
+	if (isset($_SESSION['jugador'])) {
+		$jugador = $_SESSION['jugador'];
 	}else{
-		echo "No hay jugador";
+		echo "No hay sesión";
 	}
 	
 ?>
@@ -150,7 +150,7 @@
 				</div>
 				<div class="col-xs-6">
 					<div id="jugada">
-						<form name="formulario" method="get" action="lib/calcula.php">
+						<form name="formulario" method="get" action="lib/calculaPlus.php">
 							<!-- Elementos ocultos dentro de nuestro HTML -->
 							<input type="hidden" name="dado1Jugada" value="<?=$dado1?>">
 							<input type="hidden" name="dado1" value="">

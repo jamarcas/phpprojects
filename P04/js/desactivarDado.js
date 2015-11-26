@@ -41,7 +41,7 @@ $(document).ready(function(){
             var dadoId="input[name='dado"+contador+"']";
             $(dadoId).val(value);
             if(contador==2){
-                $("#btn-jugada" ).append( "<input class='btn btn-primary btn-sm btn-block' type='submit' name='calcular' value='MathDice'/>" );
+                $("#btn-jugada" ).append( "<input class='btn btn-primary btn-sm' type='submit' name='calcular' value='MathDice'/>" );
             }
             contador++;
             realizarOperacion=true;

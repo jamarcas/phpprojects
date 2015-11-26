@@ -17,14 +17,14 @@
         }
         
         public function getApellidos(){
-            $this->apellidos = $apellidos;
+            return $this->apellidos;
         }
         public function setApellidos($apellidos){
             $this->apellidos = $apellidos;
         }
         
         public function getEdad(){
-            $this->edad = $edad;
+            return $this->edad;
         }
         public function setEdad($edad){
             $this->edad = $edad;
