@@ -50,10 +50,7 @@
 				background-repeat:no-repeat;
 				background-position:right 52px;
 			}
-			img{
-				width:70px;
-				height:70px;
-			}
+
 			h1{
 				font-family: Comic, fantasy;
 				font-size:68px;
