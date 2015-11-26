@@ -117,13 +117,13 @@
 				<div class="col-xs-6">
 					<div>
 						<div class="col-md-2" >
-							<img src="./imagenes/dadoCara<?=$dado1?>.png" class="dado3" value="<?=$dado1?>">
+							<img src="./imagenes/dadoCara<?=$dado1?>_3.png" class="dado3" value="<?=$dado1?>">
 						</div>
 						<div class="col-md-2" >
-							<img src="./imagenes/dadoCara<?=$dado2?>.png" class="dado3" value="<?=$dado2?>">
+							<img src="./imagenes/dadoCara<?=$dado2?>_3.png" class="dado3" value="<?=$dado2?>">
 						</div>
 						<div class="col-md-2" >
-							<img src="./imagenes/dadoCara<?=$dado3?>.png" class="dado3" value="<?=$dado3?>">
+							<img src="./imagenes/dadoCara<?=$dado3?>_3.png" class="dado3" value="<?=$dado3?>">
 						</div>
 						<div class="col-md-2" >
 							<img src="./imagenes/dadoCara<?=$dado4?>.png" class="dado6" value="<?=$dado4?>">

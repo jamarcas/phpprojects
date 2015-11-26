@@ -27,7 +27,7 @@
 			}
 			else 
 			{
-				$nombre = $jugador->setNombre($_POST['nombre']);
+				$jugador->setNombre($_POST['nombre']);
 			}
 			
 			if(empty($_POST['apellidos']))
@@ -36,7 +36,7 @@
 			}
 			else 
 			{
-				$apellidos = $jugador->setApellidos($_POST['apellidos']);
+				$jugador->setApellidos($_POST['apellidos']);
 			}
 			
 			if(empty($_POST['edad']))
@@ -45,13 +45,14 @@
 			}
 			else
 			{
-				$edad = $jugador->setEdad($_POST['edad']);
+				$jugador->setEdad($_POST['edad']);
 			}
 		}
 		if(sizeof($errors) == 0){
 			//Si existe el POST jugador
 			if (isset($_POST['jugador'])) {
 				//Creamos una sesión llamada jugador y le asignamos el nombre
+				$jugador->setNombre($_POST['nom']);
 			  	$_SESSION['jugador'] = $jugador;
 			}
 			//Si la sesion existe
@@ -59,10 +60,12 @@
 				$jugador = $_SESSION['jugador'];
 			}
 			//Según la edad es el Juego Math Dice o Math Dice PLUS
+			$edad = $_POST['edad'];
+			echo "";
 			if($edad < 10){
 				header ("Location: juego.php");
 			}
-			else if ($edad >=10)
+			else if ($edad >= 10)
 			{
 				header ("Location: juegoPlus.php");
 			}
@@ -171,7 +174,7 @@
 								</div>
 								<div>
 									<label for="edad">Edad:</label>
-									<input type="text" name="edad" value="" class="form-control" style="width: 450px">
+									<input type="text" name="edad" value="" class="form-control" style="width: 450px" maxlength="2">
 									<?php echo $errors[3];?>
 								</div>
 								<br/>

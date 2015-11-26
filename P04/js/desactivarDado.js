@@ -10,7 +10,7 @@ $(document).ready(function(){
             var value=$(this).attr("value");
             //Añadimos en la parte derecha  un dado con el mismo valor
             //fichero jugar.php --> <div class="items" id="jugada">
-            $("#jugada" ).append( "<img src='imagenes/dadoCara"+value+".png' width='100px'>" );
+            $("#jugada" ).append( "<img src='imagenes/dadoCara"+value+"_3.png' width='100px'>" );
             //Desactivamos el click sobre ese elemento
             $(this).off("click");
             //Cambiamos esa imagen a gris

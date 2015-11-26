@@ -11,7 +11,7 @@
     require_once('lib/jugador.php');
 
 	session_start();
-	
+
 	$juego = new Juego();
 	$jugador = new Jugador();
 	
@@ -105,19 +105,18 @@
 			    </div>
 			</div>
 		</nav>
-		<h1>MATH DICE</h1>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-6">
 					<div>
 						<div class="col-md-2" >
-							<img src="./imagenes/dadoCara<?=$dado1?>.png" class="dado3" value="<?=$dado1?>">
+							<img src="./imagenes/dadoCara<?=$dado1?>_3.png" class="dado3" value="<?=$dado1?>">
 						</div>
 						<div class="col-md-2" >
-							<img src="./imagenes/dadoCara<?=$dado2?>.png" class="dado3" value="<?=$dado2?>">
+							<img src="./imagenes/dadoCara<?=$dado2?>_3.png" class="dado3" value="<?=$dado2?>">
 						</div>
 						<div class="col-md-2" >
-							<img src="./imagenes/dadoCara<?=$dado3?>.png" class="dado3" value="<?=$dado3?>">
+							<img src="./imagenes/dadoCara<?=$dado3?>_3.png" class="dado3" value="<?=$dado3?>">
 						</div>
 						<div class="col-md-2" >
 							<img src="./imagenes/dadoCara<?=$dado4?>.png" class="dado6" value="<?=$dado4?>">
@@ -127,7 +126,7 @@
 						</div>
 					</div>
 					<div>
-						<div class="col-md-12" >
+						<div class="col-md-12">
 							<img src="./imagenes/dodecaedro<?=$dado6?>.png" class="dado12">
 						</div>
 					</div>
