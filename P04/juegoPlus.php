@@ -46,7 +46,7 @@
 			body{
 				background:#4d79ff;
 				background-image:url(imagenes/mathDice.jpg);
-				background-size: 17%;
+				background-size: 22%;
 				background-repeat:no-repeat;
 				background-position:right 52px;
 			}
@@ -102,6 +102,7 @@
 			    </div>
 			</div>
 		</nav>
+		<h1>MATH DICE PLUS</h1>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-6">

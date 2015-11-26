@@ -27,7 +27,6 @@
 	}else{
 		echo "No hay sesión";
 	}
-	var_dump($_SERVER['jugador']);
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +45,7 @@
 			body{
 				background:#4d79ff;
 				background-image:url(imagenes/mathDice.jpg);
-				background-size: 17%;
+				background-size: 18%;
 				background-repeat:no-repeat;
 				background-position:right 52px;
 			}
