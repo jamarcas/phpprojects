@@ -21,7 +21,7 @@ $(document).ready(function(){
             $(dadoId).val(value);
             //Si ya hemos colocaddo dos dados (una operación al menos) activamos el boton de calcular
             if(contador==2){
-                $("#btn-jugada" ).append( "<input class='btn btn-primary btn-sm btn-block' type='submit' name='calcular' value='MathDice'/>" );
+                $("#btn-jugada" ).append( "<input class='btn btn-primary btn-lg' size='200' type='submit' name='calcular' value='MathDice'/>" );
             }
             contador++;
             //Activamos seemaforo poder realizar operacion

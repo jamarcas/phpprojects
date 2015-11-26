@@ -22,23 +22,18 @@
 	$dado5=$juego->dadoAleatorio(6);
 	$dado6=$juego->dadoAleatorio(12);
 	
-	if (!isset($_SESSION['jugador'])) {
-	  echo "No existe la sesión";
-	} else {
-		//Si existe $jugador
-		if(isset($jugador)){
-			//Asigamos la sesión
-			$jugador = $_SESSION['jugador'];
-		}else{
-			echo "No hay jugador";
-		}
+	if(isset($jugador)){
+		$nombre = $_SESSION['jugador'];
+	}else{
+		echo "No hay jugador";
 	}
+	
 ?>
 
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Math Dice KIDS</title>
+		<title>Math Dice PLUS</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -106,12 +101,11 @@
 			        		</a>
 		        		</li>
 			      	</ul>
-			      	<p class="navbar-text pull-right">Bienvenido <?=$nombre;?>
-		      		</p>
+			      	<p class="navbar-text pull-right">Bienvenido </p>
 			    </div>
 			</div>
 		</nav>
-		<h1>MATH DICE KIDS</h1>
+		<h1>MATH DICE</h1>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-6">
@@ -138,11 +132,23 @@
 						</div>
 					</div>
 					<div>
-						<div class="col-md-6">
-							<img src="./imagenes/suma.png" class="operacion" value="+">
+						<div>
+							<div class="col-md-6">
+								<img src="./imagenes/suma.png" class="operacion" value="+">
+							</div>
+							<div class="col-md-6">
+								<img src="./imagenes/resta.png" class="operacion" value="-">
+							</div>
 						</div>
-						<div class="col-md-6">
-							<img src="./imagenes/resta.png" class="operacion" value="-">
+					</div>
+					<div>
+						<div>
+							<div class="col-md-6">
+								<img src="./imagenes/multiplicacion.png" class="operacion" value="*">
+							</div>
+							<div class="col-md-6">
+								<img src="./imagenes/division.png" class="operacion" value="/">
+							</div>
 						</div>
 					</div>
 				</div>

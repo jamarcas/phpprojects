@@ -12,10 +12,22 @@
         public function getNombre(){
             return $this->nombre;
         }
-        
         public function setNombre($nombre){
             $this->nombre = $nombre;
         }
-    
+        
+        public function getApellidos(){
+            $this->apellidos = $apellidos;
+        }
+        public function setApellidos($apellidos){
+            $this->apellidos = $apellidos;
+        }
+        
+        public function getEdad(){
+            $this->edad = $edad;
+        }
+        public function setEdad($edad){
+            $this->edad = $edad;
+        }
     }
 ?>

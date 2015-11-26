@@ -9,44 +9,64 @@
 <?php
     require_once ('lib/config.php');
     require_once ('lib/dado.php');
+    require_once ('lib/jugador.php');
 
 	session_start();
+	
+	$jugador = new Jugador();
 	
 	if( !empty($_POST) )
 	{
 		$errors = array(); // declaramos un array para almacenar los errores
 		
-		if(empty($_POST['nombre']) || empty($_POST['apellidos']) || empty($_POST['edad']))
+		if(isset($_POST['nombre']) && isset($_POST['apellidos']) && isset($_POST['edad']))
 		{
 			if(empty($_POST['nombre']))
 			{
 				$errors[1] = "<span style='color:red;'>No ha introducido su nombre</span>";
 			}
-			else if(empty($_POST['apellidos']))
+			else 
+			{
+				$nombre = $jugador->setNombre($_POST['nombre']);
+			}
+			
+			if(empty($_POST['apellidos']))
 			{
 				$errors[2] = "<span style='color:red;'>No ha introducido sus apellidos</span>";
 			}
-			else if(empty($_POST['edad']))
+			else 
+			{
+				$apellidos = $jugador->setApellidos($_POST['apellidos']);
+			}
+			
+			if(empty($_POST['edad']))
 			{
 				$errors[3] = "<span style='color:red;'>No ha introducido su edad</span>";
 			}
+			else
+			{
+				$edad = $jugador->setEdad($_POST['edad']);
+			}
 		}
-		else if(!empty($_POST['nombre']) && !empty($_POST['apellidos']) && !empty($_POST['edad']))
-		{
-			
-			$nombre = $_POST['nombre'];
-			$apellidos = $_POST['apellidos'];
-			$edad = $_POST['edad'];
-			$_SESSION['jugador'] = "SI";
-			header ("Location: juego.php");
-		
+		if(sizeof($errors) == 0){
+			//Si existe el POST jugador
+			if (isset($_POST['jugador'])) {
+				//Creamos una sesión llamada jugador y le asignamos el nombre
+			  	$_SESSION['jugador'] = $jugador;
+			}
+			//Si la sesion existe
+			if (isset($_SESSION['jugador'])){
+				$jugador = $_SESSION['jugador'];
+			}
+			//Según la edad es el Juego Math Dice o Math Dice PLUS
+			if($edad < 10){
+				header ("Location: juego.php");
+			}
+			else if ($edad >=10)
+			{
+				header ("Location: juegoPlus.php");
+			}
 		}
-		else
-		{
-			//si no existe se va a index.php
-			header("Location: index.php");
-		}
-		
 	}	
 ?>
 
@@ -60,10 +80,13 @@
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-		<link href="./css/dado.css" rel="stylesheet" type="text/css" >
 		<style>
 			body{
 				background:#66a3ff;
+				background-image:url('imagenes/dados.png');
+				background-size:38%;
+				background-position:right 55px;
+				background-repeat:no-repeat;
 			}
 			.modalDialog {
 				position: fixed;
@@ -74,6 +97,12 @@
 				z-index: 99999;
 				opacity:0;
 				transition: opacity 400ms ease-in;
+			}
+			h1{
+				font-family: Comic, fantasy;
+				font-size:68px;
+				text-align:center;
+				font-stretch: ultra-expanded;
 			}
 		</style>
 	</head>
@@ -119,12 +148,16 @@
 			    </div>
 			</div>
 		</nav>
-		<div class="panel panel-group" style="width: 560px; margin-left: 30%">
+		<h1>MATH DICE</h1>
+		<div class="panel panel-group" style="width: 560px; margin-left: 30%" style="float:center;">
 			<div class="panel panel-default">
-				<div class="panel_heading" ><b>Dados Aleatorio</b></div>
+				<div class="panel_heading">
+					<b style='margin-left:30px; font-size:35px;'>Introduce los Datos</b>
+				</div>
 	  			<div class="panel-body">
 					<div class="container">
-						<form method="post" action="juego.php">
+						<form method="post" action="index.php">
+							<input type="hidden" name="jugador">
 							<fieldset>
 								<div>
 									<label for="nombre">Nombre:</label>
