@@ -9,7 +9,6 @@
     require_once ('lib/config.php');
     require_once ('lib/dado.php');
     require_once('lib/jugador.php');
-
 	session_start();
 	
 	$juego = new Juego();
@@ -97,8 +96,8 @@
 			        		</a>
 		        		</li>
 			      	</ul>
-			      	<p class="navbar-text pull-right">Bienvenido <?=$jugador->getNombre();?>
-		      		</p>
+			      	<p class="navbar-text pull-right" ><a href="lib/perfil.php">Perfil</a></p>
+			      	<p class="navbar-text pull-right">Bienvenido <?=$jugador->getNombre();?></p>
 			    </div>
 			</div>
 		</nav>
