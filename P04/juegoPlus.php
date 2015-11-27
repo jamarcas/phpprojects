@@ -98,7 +98,7 @@
 			        		</a>
 		        		</li>
 			      	</ul>
-			      	<p class="navbar-text pull-right"><a href="lib/perfil.php">Perfil</a></p>
+			      	<p class="navbar-text pull-right"><a href="perfil.php">Perfil</a></p>
 			      	<p class="navbar-text pull-right">Bienvenido <?=$jugador->getNombre();?> </p>
 			    </div>
 			</div>

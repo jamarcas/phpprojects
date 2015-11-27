@@ -14,6 +14,26 @@
 	
 	$jugador = new Jugador();
 	
+	if(!isset($_SESSION['jugador']))
+	{
+		//Ponemos nombre al jugador
+		$jugador->setNombre($_POST['nombre']);
+		$jugador->setApellidos($_POST['apellidos']);
+		$jugador->setApellidos($_POST['edad']);
+		
+		//Inicializamos la sesión jugador introduciendo datos
+	  	$_SESSION['jugador'] = $jugador;
+	  	
+	}else if(isset($_SESSION['jugador']))
+	{
+		//Asignamos los datos de la sesión al objeto jugador
+	    $jugador = $_SESSION['jugador'];
+	    //Obtenemos los datos asignados al jugador
+	    $nombre = $jugador->getNombre();
+	    $apellidos = $jugador->getApellidos();
+	    $edad = $jugador->getEdad();
+	}
+	
 	if( !empty($_POST) )
 	{
 		$errors = array(); // declaramos un array para almacenar los errores
@@ -47,34 +67,37 @@
 				$jugador->setEdad($_POST['edad']);
 			}
 		}
+		var_dump($_SESSION['jugador']);
 		if(sizeof($errors) == 0)
 		{
 			//Si existe el POST jugador
 			if (isset($_POST['jugador'])) 
 			{
-				if(!isset($_SESSION['jugador']))
+				if(isset($_SESSION['jugador']))
 				{
-					//Ponemos nombre al jugador
-					$jugador->setNombre($_POST['nombre']);
+				    //Asignamos los datos de la sesión al objeto jugador
+				    $jugador = $_SESSION['jugador'];
+				    //Obtenemos los datos asignados al jugador
+				    $nombre = $jugador->getNombre();
+				    $apellidos = $jugador->getApellidos();
+				    $edad = $jugador->getEdad();
+				    
+				    //Guardamos los nuevos datos en jugador
+    			    $jugador->setNombre($_POST['nombre']);
 					$jugador->setApellidos($_POST['apellidos']);
-					$jugador->setEdad($_POST['edad']);
-					//Inicializamos jugador
-				  	$_SESSION['jugador'] = $jugador;
+					$edadNueva = $jugador->setEdad($_POST['edad']);
+					//Asignamos los nuevos datos en la sesión jugador
+    				$_SESSION['jugador'] = $jugador;
+				    
+				    if($edadNueva < 10)
+        			{
+        				header ("Location: /P04/juego.php");
+        			}
+        			else if ($edadNueva >= 10)
+        			{
+        				header ("Location: /P04/juegoPlus.php");
+        			}
 				}
-			}
-			/*/Si está creada la sesión jugador, inicializamos objeto $jugador
-			if(isset($_SESSION['jugador'])){
-				$jugador = $_SESSION['jugador'];
-			}*/
-			//Según la edad es el Juego Math Dice o Math Dice PLUS
-			$edad = $_POST['edad'];
-			if($edad < 10)
-			{
-				header ("Location: juego.php");
-			}
-			else if ($edad >= 10)
-			{
-				header ("Location: juegoPlus.php");
 			}
 		}
 	}	
@@ -93,7 +116,7 @@
 		<style>
 			body{
 				background:#66a3ff;
-				background-image:url('imagenes/dados.png');
+				background-image:url('P04/imagenes/dados.png');
 				background-size:38%;
 				background-position:right 55px;
 				background-repeat:no-repeat;
@@ -162,31 +185,31 @@
 		<div class="panel panel-group" style="width: 560px; margin-left: 30%" style="float:center;">
 			<div class="panel panel-default">
 				<div class="panel_heading">
-					<b style='margin-left:30px; font-size:35px;'>Introduce los Datos</b>
+					<b style='margin-left:30px; font-size:35px;'>Actualiza los Datos</b>
 				</div>
 	  			<div class="panel-body">
 					<div class="container">
-						<form method="post" action="index.php">
+						<form method="post" action="perfil.php">
 							<input type="hidden" name="jugador">
 							<fieldset>
 								<div>
 									<label for="nombre">Nombre:</label>
-		  							<input type="type" name="nombre" value="" class="form-control" style="width: 450px">
+		  							<input type="type" name="nombre" value="<?=$nombre?>" class="form-control" style="width: 450px">
 		  							<?php echo  $errors[1];?>
 		  						</div>
 		  						<div>
 									<label for="apellidos">Apellidos:</label>
-									<input type="text" name="apellidos" value="" class="form-control" style="width: 450px">
+									<input type="text" name="apellidos" value="<?=$apellidos?>" class="form-control" style="width: 450px">
 									<?php echo $errors[2];?>
 								</div>
 								<div>
 									<label for="edad">Edad:</label>
-									<input type="text" name="edad" value="" class="form-control" style="width: 450px" maxlength="2">
+									<input type="text" name="edad" value="<?=$edad?>" class="form-control" style="width: 450px" maxlength="2">
 									<?php echo $errors[3];?>
 								</div>
 								<br/>
 								<div>
-									<input type="submit" value="Enviar Datos" name="enviar" class="btn btn-primary">
+									<input type="submit" value="Guardar Datos" name="guardar" class="btn btn-primary">
 									<?php echo $result?>
 								</div>
 							</fieldset>
