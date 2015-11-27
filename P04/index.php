@@ -26,7 +26,7 @@
 			}
 			else 
 			{
-				$jugador->setNombre($_POST['nombre']);
+				$jugador->setNombre($_POST['nombre']); //Añadimos el nombre al Jugador
 			}
 			
 			if(empty($_POST['apellidos']))
@@ -35,7 +35,7 @@
 			}
 			else 
 			{
-				$jugador->setApellidos($_POST['apellidos']);
+				$jugador->setApellidos($_POST['apellidos']); //Añadimos los apellidos del Jugador
 			}
 			
 			if(empty($_POST['edad']))
@@ -44,7 +44,7 @@
 			}
 			else
 			{
-				$jugador->setEdad($_POST['edad']);
+				$jugador->setEdad($_POST['edad']); //Añadimos la edad del Jugador
 			}
 		}
 		if(sizeof($errors) == 0)
