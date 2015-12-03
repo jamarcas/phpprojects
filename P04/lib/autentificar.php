@@ -16,15 +16,18 @@
     		if(empty($_POST['nombre']))
     		{
     			$errors[1] = "<span style='color:red;'>No ha introducido su nombre</span>";
+    			header("Location: /P04/index.php");
     		}
     		else 
     		{
     			$jugador->setNombre($_POST['nombre']); //Añadimos el nombre al Jugador
+
     		}
     		
     		if(empty($_POST['apellidos']))
     		{
     			$errors[2] = "<span style='color:red;'>No ha introducido sus apellidos</span>";
+    			header("Location: /P04/index.php");
     		}
     		else 
     		{
@@ -34,12 +37,14 @@
     		if(empty($_POST['edad']))
     		{
     			$errors[3] = "<span style='color:red;'>No ha introducido su edad</span>";
+    			header("Location: /P04/index.php");
     		}
     		else
     		{
     			$jugador->setEdad($_POST['edad']); //Añadimos la edad del Jugador
     		}
     	}
+    	
     	if(sizeof($errors) == 0)
     	{
     		//Si existe el POST jugador
