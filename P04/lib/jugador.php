@@ -8,7 +8,7 @@
         function __constructor(){
             
         }
-        //Crear Métodos
+        //Crear Métodos Getters y Setters
         public function getNombre(){
             return $this->nombre;
         }

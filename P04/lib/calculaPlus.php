@@ -6,6 +6,8 @@
 <!-- Realizamos los cálculos y comprobaciones pertinentes después de pulsar el botón.-->
 
 <?php 
+    require_once('jugador.php');
+
     //Dados del 1 al 3
     $dado1 = $_GET["dado1"];
     $dado2 = $_GET["dado2"];
@@ -27,6 +29,12 @@
     $resultado = 0; //inicializamos resultado
     
     session_start();
+    
+    $jugador = new Jugador();
+    
+    if(isset($_SESSION['jugador'])){
+        $jugador = $_SESSION['jugador'];
+    }
 
 ?>
 
@@ -134,6 +142,8 @@
                     echo "<h1 style='color:blue'><b>¡Enhorabuena has acertado!</b></h1>";
                     echo "<div style='border: 1px dashed; width:70%; padding:10px 20px; margin:5px 10px; text-align:center;'><h3>Tu resultado es : ".$dado1." ".$operacion1." ".$dado2." ".$operacion2." ".$dado3." ".$operacion3." ".$dado4." ".$operacion4." ".$dado5." = ".$resultado."</h3>";
                     echo "<h3>El dodecaedro da : ".$dado6."</h3></div>";
+                    $jugador->puntuacion += 5;
+                    $_SESSION['jugador'] = $jugador;
                     echo "<br><a href='/P04/juegoPlus.php' role='button' class='btn btn-primary' Click='return confirm('¿Desea Volver?');'> Volver </a>";
                 }else{
                     echo "<h1 style='color:red'><b>¡La soluci&oacuten no es correcta!</b></h1>";
