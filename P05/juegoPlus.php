@@ -9,8 +9,7 @@
     require_once ('lib/config.php');
     require_once ('lib/dado.php');
     require_once('lib/jugador.php');
-
-	session_start();
+    require_once('lib/autentificar.php');
 
 	$juego = new Juego();
 	$jugador = new Jugador();
@@ -21,12 +20,6 @@
 	$dado4=$juego->dadoAleatorio(6);
 	$dado5=$juego->dadoAleatorio(6);
 	$dado6=$juego->dadoAleatorio(12);
-	
-	if (isset($_SESSION['jugador'])) {
-		$jugador = $_SESSION['jugador'];
-	}else{
-		echo "No hay sesión";
-	}
 	
 ?>
 
