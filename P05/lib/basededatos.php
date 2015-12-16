@@ -24,7 +24,7 @@
         //Consulta SELECT
         function selectUsuario($nombre, $apellidos){
             //Consulta Query
-            $consultaSelect = "SELECT * FROM ".$table. "WHERE nombre = ".$nombre." AND apellidos =".$apellidos;
+            $consultaSelect = "SELECT * FROM " . $table . "WHERE nombre = " . $nombre ." AND apellidos =" . $apellidos;
             
             //Comprobamos consulta
             if($resultado = $this->conexion->query($consultaSelect)){
@@ -40,7 +40,8 @@
         //Consulta INSERT
         function insertUsuario($nombre, $apellidos, $edad){
             //Consulta Query
-            $consultaInsert = "INSERT INTO ".$table. " (nombre, apellidos, edad) VALUES ('".$nombre."','".$apellidos."',".$edad.")";
+            $consultaInsert = "INSERT INTO " . $table . " (nombre, apellidos, edad) VALUES ('" . $nombre . 
+            "','" . $apellidos . "'," . $edad . ")";
            
             $this->conexion->query($consultaInsert);
             

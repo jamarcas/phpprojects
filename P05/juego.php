@@ -6,7 +6,7 @@
 <!-- Estructura de nuestro juego.-->
 
 <?php
-	require_once('autentificar.php');
+	require_once('lib/autentificar.php');
     require_once ('lib/config.php');
     require_once ('lib/dado.php');
     require_once('lib/jugador.php');
