@@ -1,3 +1,10 @@
+<!-- 
+	Autor: Javier Martín Castro
+	2ºDAW - Desarrollo Web en Entorno Servidor
+-->
+
+<!-- Comprueba que los datos están introducidos correctamente e inserta un nuevo registro si no está creado -->
+
 <?php
     require_once('jugador.php');
     require_once('basededatos.php');
@@ -6,20 +13,18 @@
     session_start();
     //Creamos el objeto jugador
     $jugador = new Jugador();
+    //Creamos objeto de la base de datos
     $db = new BaseDeDatos();
     
     //Commprobamos si la variable global $_POST no está vacía
     if( !empty($_POST) )
     {
-    	$errors = array(); // declaramos un array para almacenar los errores
-    	
     	if(isset($_POST['nombre']) && isset($_POST['apellidos']) && isset($_POST['edad']))
     	{
     		if(empty($_POST['nombre']))
     		{
     			header("Location: /P05/index.php");
     		}
-    		
     		
     		if(empty($_POST['apellidos']))
     		{
@@ -30,7 +35,6 @@
     		{
     			header("Location: /P05/index.php");
     		}
-    		
     	}
 
 		//Si existe el POST jugador
@@ -45,19 +49,33 @@
     				$jugador->setApellidos($jugadorDB['apellidos']);
     				$jugador->setEdad($jugadorDB['edad']);
     				$jugador->setId($jugadorDB['id']);
-    				$jugador->puntuacion;
+    				$jugador->setPuntos($jugadorDB['puntos']);
 			    }
 			    //Si no existe, inserta un nuevo registro
 			    else{
+			    	
 			        $id = $db->insertUsuario($_POST['nombre'], $_POST['apellidos'], $_POST['edad']);
 			        //Ponemos nombre al jugador
     				$jugador->setNombre($_POST['nombre']);
     				$jugador->setApellidos($_POST['apellidos']);
     				$jugador->setEdad($_POST['edad']);
     				$jugador->setId($id);
-    				$jugador->puntuacion;
+    				$jugador->setPuntos(0);
 			    }
 			    //Inicializamos jugador
+				$_SESSION['jugador'] = $jugador;
+			}
+			//Si hay una sesión empezada modificamos los datos del jugador
+			else{
+				$jugadorDB = $db->selectUsuario($_POST['nombre'], $_POST['apellidos']
+				//Ponemos nombre al jugador
+				$jugador->setNombre($jugadorDB['nombre']);
+				$jugador->setApellidos($jugadorDB['apellidos']);
+				$jugador->setEdad($jugadorDB['edad']);
+				$jugador->setId($jugadorDB['id']);
+				$jugador->setPuntos($jugadorDB['puntos']);
+				
+				
 				$_SESSION['jugador'] = $jugador;
 			}
 			

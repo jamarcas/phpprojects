@@ -9,7 +9,6 @@
 	require_once('lib/autentificar.php');
     require_once ('lib/config.php');
     require_once ('lib/dado.php');
-    require_once('lib/jugador.php');
 
 	$juego = new Juego();
 	$jugador = new Jugador();
@@ -22,6 +21,7 @@
 	$dado6=$juego->dadoAleatorio(12);
 	
 	$jugador = $_SESSION['jugador'];
+	
 ?>
 
 <!DOCTYPE html>
@@ -93,7 +93,7 @@
 		        		</li>
 			      	</ul>
 			      	<p class="navbar-text pull-right" ><a href="perfil.php">Perfil</a></p>
-			      	<p class="navbar-text pull-right">Bienvenido <?=$jugador->getNombre();?>, <?=$jugador->puntuacion;?> puntos</p>
+			      	<p class="navbar-text pull-right">Bienvenido <?=$jugador->getNombre();?>, <?=$jugador->getPuntos();?> puntos</p>
 			    </div>
 			</div>
 		</nav>

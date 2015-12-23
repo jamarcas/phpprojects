@@ -103,22 +103,18 @@
 								<div>
 									<label for="nombre">Nombre:</label>
 		  							<input type="type" name="nombre" value="" class="form-control" style="width: 450px">
-		  							<?php echo  $errors[1];?>
 		  						</div>
 		  						<div>
 									<label for="apellidos">Apellidos:</label>
 									<input type="text" name="apellidos" value="" class="form-control" style="width: 450px">
-									<?php echo $errors[2];?>
 								</div>
 								<div>
 									<label for="edad">Edad:</label>
 									<input type="text" name="edad" value="" class="form-control" style="width: 450px" maxlength="2">
-									<?php echo $errors[3];?>
 								</div>
 								<br/>
 								<div>
 									<input type="submit" value="Enviar Datos" name="enviar" class="btn btn-primary">
-									<?php echo $result?>
 								</div>
 							</fieldset>
 						</form>	

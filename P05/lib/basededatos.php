@@ -8,15 +8,15 @@
         private $pass = "jamarcas";
         private $conexion;
         
-        //Constructor
-        function __construct(){
-            //host, usuario, contraseña, base de datos
+        //CREAMOS EL CONSTRUCTOR
+        function __construct() {
             $this->conexion = new mysqli($this->host, $this->user, $this->pass, $this->db);
         }
         
         //Comprobamos si la conexion falla
         function comprobarConexion(){
-            if ($this->conexion->connect_errno) {
+            if ($this->conexion->connect_errno) 
+            {
                 echo "Fallo al conectar a MySQL: (" . $this->conexion->connect_errno . ") " . $this->conexion->connect_error;
             }
         }
@@ -24,7 +24,7 @@
         //Consulta SELECT
         function selectUsuario($nombre, $apellidos){
             //Consulta Query
-            $consultaSelect = "SELECT * FROM " . $table . "WHERE nombre = " . $nombre ." AND apellidos =" . $apellidos;
+            $consultaSelect = "SELECT * FROM " . $table . " WHERE nombre = " . $nombre ." AND apellidos =" . $apellidos;
             
             //Comprobamos consulta
             if($resultado = $this->conexion->query($consultaSelect)){
@@ -40,18 +40,26 @@
         //Consulta INSERT
         function insertUsuario($nombre, $apellidos, $edad){
             //Consulta Query
-            $consultaInsert = "INSERT INTO " . $table . " (nombre, apellidos, edad) VALUES ('" . $nombre . 
-            "','" . $apellidos . "'," . $edad . ")";
+            //INSERT INTO nombreTabla (nombre, apellidos, edad) VALUES ('reg1', 'reg2', 'reg3')";
+            $consultaInsert = "INSERT INTO usuario (nombre, apellidos, edad)
+            VALUES ('" . $nombre . "', '" . $apellidos . "', " . $edad . ")";
            
-            $this->conexion->query($consultaInsert);
+            if (mysqli_query($this->conexion, $consultaInsert)) {
+                echo "New record created successfully";
+            }
+            else {
+                echo "Error: " . $consultaInsert . "<br>" . mysqli_error($this->conexion);
+            }
             
-            return $mysqli->insert_id;
+            return $this->conexion->insert_id;
         }
         
         //Consulta UPDATE
-        function updateUsuario($nombre, $apellidos, $edad, $puntos){
-            $consultaUpdate = "UPDATE ".$table." SET nombre=".$nombre.", apellidos=".$apellidos.", edad=".$edad.", puntos =".$puntos;
-            
+        function updateUsuario($nombre, $apellidos, $edad, $puntos,$id){
+            $consultaUpdate = "UPDATE usuario SET 
+            nombre='" . $nombre . "', apellidos='" . $apellidos . "', edad=" . $edad . ", puntos=" . $puntos . 
+            " WHERE id=".$id;
+            //Realizamos UPDATE
             $this->conexion->query($consultaUpdate);
         }
     }

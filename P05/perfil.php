@@ -3,59 +3,49 @@
 	2ºDAW - Desarrollo Web en Entorno Servidor
 -->
 
-<!-- Página principal Juego.-->
-
-<!-- Incluimos tanto config.php como dado.php -->
 <?php
     require_once ('lib/config.php');
-    require_once ('lib/jugador.php');
+    require_once ('lib/autentificar.php');
     require_once('lib/basededatos.php');
-    require_once('lib/autentificar');
     
 	$jugador = new Jugador();
 	$db = new BaseDeDatos();
 	
-	if(!isset($_SESSION['jugador']))
-	{
-		//Ponemos nombre al jugador
-		$jugador->setNombre($_POST['nombre']);
-		$jugador->setApellidos($_POST['apellidos']);
-		$jugador->setApellidos($_POST['edad']);
-		
-		//Inicializamos la sesión jugador introduciendo datos
-	  	$_SESSION['jugador'] = $jugador;
-	  	
-	}else if(isset($_SESSION['jugador']))
-	{
-		//Asignamos los datos de la sesión al objeto jugador
-	    $jugador = $_SESSION['jugador'];
-	    
-	    //Obtenemos los datos asignados al jugador
-	    $nombre = $jugador->getNombre();
-	    $apellidos = $jugador->getApellidos();
-	    $edad = $jugador->getEdad();
-		$puntos = $jugador->puntuacion;
+	//Asignamos los datos de la sesión al objeto jugador
+	$jugador = $_SESSION['jugador'];
+	echo var_dump($_SESSION['jugador']);
 		    
-	    //Guardamos los nuevos datos en jugador
-	    $jugador->setNombre($_POST['nombre']);
-		$jugador->setApellidos($_POST['apellidos']);
-		$jugador->setEdad($_POST['edad']);
-			
-		//Actualizamos Base de Datos
-		$jugadorDB = $db->updateUsuario($_POST['nombre'], $_POST['apellidos'], $_POST['edad'], $puntos);
+	if (isset($_POST['jugador'])) 
+	{
+		if(isset($_SESSION['jugador']))
+		{
+		    //Obtenemos los datos asignados al jugador
+		    $nombre = $jugador->getNombre();
+		    $apellidos = $jugador->getApellidos();
+		    $edad = $jugador->getEdad();
+			$puntos = $jugador->getPuntos();
+			$id = $jugador->getId();
+			    
+		    //Guardamos los nuevos datos en jugador
+		    $jugador->setNombre($_POST['nombre']);
+			$jugador->setApellidos($_POST['apellidos']);
+			$jugador->setEdad($_POST['edad']);
+
+			//Actualizamos Base de Datos
+			$db->updateUsuario($_POST['nombre'], $_POST['apellidos'], $_POST['edad'], $puntos, $id);
 				
-			
-		//Asignamos los nuevos datos en la sesión jugador
-		$_SESSION['jugador'] = $jugador;
-	    
-	    $edadNueva = $_POST['edad'];
-	    if($edadNueva < 10)
-		{
-			header ("Location: /P05/juego.php");
-		}
-		else if ($edadNueva >= 10)
-		{
-			header ("Location: /P05/juegoPlus.php");
+			//Asignamos los nuevos datos en la sesión jugador
+			$_SESSION['jugador'] = $jugador;
+		    
+		    $edadNueva = $_POST['edad'];
+		    if($edadNueva < 10)
+			{
+				header ("Location: /P05/juego.php");
+			}
+			else if ($edadNueva >= 10)
+			{
+				header ("Location: /P05/juegoPlus.php");
+			}
 		}
 	}
 	
