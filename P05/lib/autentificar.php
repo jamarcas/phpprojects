@@ -66,8 +66,9 @@
 				$_SESSION['jugador'] = $jugador;
 			}
 			//Si hay una sesión empezada modificamos los datos del jugador
-			else{
-				$jugadorDB = $db->selectUsuario($_POST['nombre'], $_POST['apellidos']
+			else if(isset($_SESSION['jugador']))
+			{
+				$jugadorDB = $db->selectUsuario($_POST['nombre'], $_POST['apellidos']);
 				//Ponemos nombre al jugador
 				$jugador->setNombre($jugadorDB['nombre']);
 				$jugador->setApellidos($jugadorDB['apellidos']);

@@ -1,3 +1,10 @@
+<!-- 
+	Autor: Javier Martín Castro
+	2ºDAW - Desarrollo Web en Entorno Servidor
+-->
+
+<!-- Clase de Base de Datos -->
+
 <?php
     class BaseDeDatos{
         //variables de la base de datos
@@ -24,7 +31,7 @@
         //Consulta SELECT
         function selectUsuario($nombre, $apellidos){
             //Consulta Query
-            $consultaSelect = "SELECT * FROM " . $table . " WHERE nombre = " . $nombre ." AND apellidos =" . $apellidos;
+            $consultaSelect = "SELECT * FROM usuario WHERE nombre = " . $nombre ." AND apellidos =" . $apellidos;
             
             //Comprobamos consulta
             if($resultado = $this->conexion->query($consultaSelect)){

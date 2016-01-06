@@ -1,54 +1,48 @@
 <!-- 
 	Autor: Javier Martín Castro
 	2ºDAW - Desarrollo Web en Entorno Servidor
+	
+	Actualiza los datos del Jugador
 -->
 
 <?php
     require_once ('lib/config.php');
     require_once ('lib/autentificar.php');
     require_once('lib/basededatos.php');
-    
-	$jugador = new Jugador();
-	$db = new BaseDeDatos();
 	
 	//Asignamos los datos de la sesión al objeto jugador
 	$jugador = $_SESSION['jugador'];
-	echo var_dump($_SESSION['jugador']);
-		    
+	
+	//Obtenemos los datos asignados al jugador
+    $nombre = $jugador->getNombre();
+    $apellidos = $jugador->getApellidos();
+    $edad = $jugador->getEdad();
+	$puntos = $jugador->getPuntos();
+	$id = $jugador->getId();
+	
 	if (isset($_POST['jugador'])) 
 	{
-		if(isset($_SESSION['jugador']))
-		{
-		    //Obtenemos los datos asignados al jugador
-		    $nombre = $jugador->getNombre();
-		    $apellidos = $jugador->getApellidos();
-		    $edad = $jugador->getEdad();
-			$puntos = $jugador->getPuntos();
-			$id = $jugador->getId();
-			    
-		    //Guardamos los nuevos datos en jugador
-		    $jugador->setNombre($_POST['nombre']);
-			$jugador->setApellidos($_POST['apellidos']);
-			$jugador->setEdad($_POST['edad']);
+	    //Guardamos los nuevos datos en jugador
+	    $jugador->setNombre($_POST['nombre']);
+		$jugador->setApellidos($_POST['apellidos']);
+		$jugador->setEdad($_POST['edad']);
 
-			//Actualizamos Base de Datos
-			$db->updateUsuario($_POST['nombre'], $_POST['apellidos'], $_POST['edad'], $puntos, $id);
-				
-			//Asignamos los nuevos datos en la sesión jugador
-			$_SESSION['jugador'] = $jugador;
-		    
-		    $edadNueva = $_POST['edad'];
-		    if($edadNueva < 10)
-			{
-				header ("Location: /P05/juego.php");
-			}
-			else if ($edadNueva >= 10)
-			{
-				header ("Location: /P05/juegoPlus.php");
-			}
+		//Actualizamos Base de Datos
+		$db->updateUsuario($_POST['nombre'], $_POST['apellidos'], $_POST['edad'], $puntos, $id);
+			
+		//Asignamos los nuevos datos en la sesión jugador
+		$_SESSION['jugador'] = $jugador;
+	    
+	    $edadNueva = $_POST['edad'];
+	    if($edadNueva < 10)
+		{
+			header ("Location: /P05/juego.php");
+		}
+		else if ($edadNueva >= 10)
+		{
+			header ("Location: /P05/juegoPlus.php");
 		}
 	}
-	
 ?>
 
 <!DOCTYPE html>
