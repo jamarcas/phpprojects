@@ -1,9 +1,3 @@
-<!-- 
-	Autor: Javier Martín Castro
-	2ºDAW - Desarrollo Web en Entorno Servidor
--->
-
-<!-- Array Multidimensional con los menús del juego -->
 <?php
 	//Array que guardará el idioma del juego
 	$lang = "sp";

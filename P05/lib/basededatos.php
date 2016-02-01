@@ -1,10 +1,3 @@
-<!-- 
-	Autor: Javier Martín Castro
-	2ºDAW - Desarrollo Web en Entorno Servidor
--->
-
-<!-- Clase de Base de Datos -->
-
 <?php
     class BaseDeDatos{
         //variables de la base de datos
@@ -31,7 +24,7 @@
         //Consulta SELECT
         function selectUsuario($nombre, $apellidos){
             //Consulta Query
-            $consultaSelect = "SELECT * FROM usuario WHERE nombre = " . $nombre ." AND apellidos =" . $apellidos;
+            $consultaSelect = "SELECT * FROM usuario WHERE nombre = '" . $nombre ."' AND apellidos ='" . $apellidos ."'";
             
             //Comprobamos consulta
             if($resultado = $this->conexion->query($consultaSelect)){
@@ -49,7 +42,7 @@
             //Consulta Query
             //INSERT INTO nombreTabla (nombre, apellidos, edad) VALUES ('reg1', 'reg2', 'reg3')";
             $consultaInsert = "INSERT INTO usuario (nombre, apellidos, edad)
-            VALUES ('" . $nombre . "', '" . $apellidos . "', " . $edad . ")";
+            VALUES ('" . $nombre . "', '" . $apellidos . "', '" . $edad . "')";
            
             if (mysqli_query($this->conexion, $consultaInsert)) {
                 echo "New record created successfully";
@@ -62,12 +55,20 @@
         }
         
         //Consulta UPDATE
-        function updateUsuario($nombre, $apellidos, $edad, $puntos,$id){
+        function updateUsuario($id, $nombre, $apellidos, $edad, $puntos){
             $consultaUpdate = "UPDATE usuario SET 
-            nombre='" . $nombre . "', apellidos='" . $apellidos . "', edad=" . $edad . ", puntos=" . $puntos . 
-            " WHERE id=".$id;
+                                    nombre='" . $nombre . 
+                                    "', apellidos='" . $apellidos . 
+                                    "', edad=" . $edad . 
+                                    ", puntos=" . $puntos . 
+                            " WHERE id=" . $id ."";
             //Realizamos UPDATE
-            $this->conexion->query($consultaUpdate);
+            if (mysqli_query($this->conexion, $consultaUpdate)) {
+                echo "Record update successfully";
+            }
+            else {
+                echo "Error: " . $consultaUpdate . "<br>" . mysqli_error($this->conexion);
+            }
         }
     }
 

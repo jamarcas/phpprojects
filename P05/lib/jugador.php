@@ -3,7 +3,7 @@
     class Jugador{
         //Variables Clase
         private $nombre = "Jugador 1";
-        private $puntos = 0;
+
         //Crear Constructor
         function __constructor(){
             
@@ -46,5 +46,6 @@
         public function setPuntos($puntos){
             $this->puntos += $puntos;
         }
+
     }
 ?>

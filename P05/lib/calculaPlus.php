@@ -1,13 +1,9 @@
-<!-- 
-	Autor: Javier Martín Castro
-	2ºDAW - Desarrollo Web en Entorno Servidor
--->
-
-<!-- Realizamos los cálculos y comprobaciones pertinentes después de pulsar el botón.-->
-
 <?php 
     require_once('jugador.php');
     require_once('autentificar.php');
+    require_once('basededatos.php');
+    
+    $db = new BaseDeDatos();
 
     //Dados del 1 al 3
     $dado1 = $_GET["dado1"];
@@ -28,10 +24,6 @@
     $operacion4 = $_GET["operacion4"];
     
     $resultado = 0; //inicializamos resultado
-    
-    session_start();
-    
-    $jugador = new Jugador();
     
     $jugador = $_SESSION['jugador'];
 ?>
@@ -144,6 +136,15 @@
                     $jugador->setPuntos(5);
                     //Actualizamos la base de datos
                     $_SESSION['jugador'] = $jugador;
+                    //Obtenemos los datos almacenados en la sesión jugador
+                    $nombre=$jugador->getNombre();
+                    $apellidos=$jugador->getApellidos();
+                    $edad=$jugador->getEdad();
+                    $id=$jugador->getId();
+                    $puntos=$jugador->getPuntos();
+                    //Actualizamos la base de datos
+                    $db->updateUsuario($id, $nombre, $apellidos, $edad, $puntos);
+                    
                     echo "<br><a href='/P05/juegoPlus.php' role='button' class='btn btn-primary' Click='return confirm('¿Desea Volver?');'> Volver </a>";
                 }else{
                     echo "<h1 style='color:red'><b>¡La soluci&oacuten no es correcta!</b></h1>";

@@ -1,10 +1,3 @@
-<!-- 
-	Autor: Javier Martín Castro
-	2ºDAW - Desarrollo Web en Entorno Servidor
--->
-
-<!-- Comprueba que los datos están introducidos correctamente e inserta un nuevo registro si no está creado -->
-
 <?php
     require_once('jugador.php');
     require_once('basededatos.php');
@@ -15,6 +8,9 @@
     $jugador = new Jugador();
     //Creamos objeto de la base de datos
     $db = new BaseDeDatos();
+    
+    var_dump($_POST);
+    var_dump($jugador);
     
     //Commprobamos si la variable global $_POST no está vacía
     if( !empty($_POST) )
@@ -42,6 +38,9 @@
 		{
 			if(!isset($_SESSION['jugador']))
 			{
+				//Inicializamos y creamos la $_SESSION jugador 
+				$_SESSION['jugador'] = $jugador;
+				
 			    //Si existe el registro en la base de datos
 			    if($jugadorDB = $db->selectUsuario($_POST['nombre'], $_POST['apellidos'])){
     				//Ponemos nombre al jugador
@@ -61,23 +60,36 @@
     				$jugador->setEdad($_POST['edad']);
     				$jugador->setId($id);
     				$jugador->setPuntos(0);
+    				
 			    }
-			    //Inicializamos jugador
-				$_SESSION['jugador'] = $jugador;
 			}
 			//Si hay una sesión empezada modificamos los datos del jugador
 			else if(isset($_SESSION['jugador']))
 			{
-				$jugadorDB = $db->selectUsuario($_POST['nombre'], $_POST['apellidos']);
-				//Ponemos nombre al jugador
-				$jugador->setNombre($jugadorDB['nombre']);
-				$jugador->setApellidos($jugadorDB['apellidos']);
-				$jugador->setEdad($jugadorDB['edad']);
-				$jugador->setId($jugadorDB['id']);
-				$jugador->setPuntos($jugadorDB['puntos']);
+				//Obtenemos los datos actualizados de la sesión jugador
+				$jugador = $_SESSION['jugador'];
+				//Obtener los datos que vamos a actualizar
+				$id = $jugador->getId();
+				$puntos = $jugador->getPuntos();
+				$nombreNuevo = $jugador->getNombre();
+				$apellidosNuevos = $jugador->getNombre();
+				$edadNueva = $jugador->getNombre();
 				
-				
-				$_SESSION['jugador'] = $jugador;
+				//Actualizar perfil de jugador
+				if(isset($_POST['accionCambiarPerfil'])){
+					//Actualiza la base de datos
+					$db->updateUsuario($id, $nombreNuevo, $apellidosNuevos, $edadNueva, $puntos);
+				}else{
+					$jugadorDB = $db->selectUsuario($_POST['nombre'], $_POST['apellidos']);
+					//Ponemos nombre al jugador
+					$jugador->setNombre($jugadorDB['nombre']);
+					$jugador->setApellidos($jugadorDB['apellidos']);
+					$jugador->setEdad($jugadorDB['edad']);
+					$jugador->setId($jugadorDB['id']);
+					$jugador->setPuntos($jugadorDB['puntos']);
+					
+					$_SESSION['jugador'] = $jugador;
+				}
 			}
 			
 		}
