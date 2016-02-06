@@ -9,7 +9,7 @@
     //Creamos objeto de la base de datos
     $db = new BaseDeDatos();
     
-    var_dump($_POST);
+    var_dump($_POST['accionCambiarPerfil']);
     var_dump($jugador);
     
     //Commprobamos si la variable global $_POST no está vacía
@@ -66,30 +66,16 @@
 			//Si hay una sesión empezada modificamos los datos del jugador
 			else if(isset($_SESSION['jugador']))
 			{
-				//Obtenemos los datos actualizados de la sesión jugador
-				$jugador = $_SESSION['jugador'];
-				//Obtener los datos que vamos a actualizar
-				$id = $jugador->getId();
-				$puntos = $jugador->getPuntos();
-				$nombreNuevo = $jugador->getNombre();
-				$apellidosNuevos = $jugador->getNombre();
-				$edadNueva = $jugador->getNombre();
+				$jugadorDB = $db->selectUsuario($_POST['nombre'], $_POST['apellidos']);
+				//Ponemos nombre al jugador
+				$jugador->setNombre($jugadorDB['nombre']);
+				$jugador->setApellidos($jugadorDB['apellidos']);
+				$jugador->setEdad($jugadorDB['edad']);
+				$jugador->setId($jugadorDB['id']);
+				$jugador->setPuntos($jugadorDB['puntos']);
 				
-				//Actualizar perfil de jugador
-				if(isset($_POST['accionCambiarPerfil'])){
-					//Actualiza la base de datos
-					$db->updateUsuario($id, $nombreNuevo, $apellidosNuevos, $edadNueva, $puntos);
-				}else{
-					$jugadorDB = $db->selectUsuario($_POST['nombre'], $_POST['apellidos']);
-					//Ponemos nombre al jugador
-					$jugador->setNombre($jugadorDB['nombre']);
-					$jugador->setApellidos($jugadorDB['apellidos']);
-					$jugador->setEdad($jugadorDB['edad']);
-					$jugador->setId($jugadorDB['id']);
-					$jugador->setPuntos($jugadorDB['puntos']);
-					
-					$_SESSION['jugador'] = $jugador;
-				}
+				$_SESSION['jugador'] = $jugador;
+				
 			}
 			
 		}

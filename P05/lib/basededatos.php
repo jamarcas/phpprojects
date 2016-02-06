@@ -61,7 +61,7 @@
                                     "', apellidos='" . $apellidos . 
                                     "', edad=" . $edad . 
                                     ", puntos=" . $puntos . 
-                            " WHERE id=" . $id ."";
+                            " WHERE id=" . $id ;
             //Realizamos UPDATE
             if (mysqli_query($this->conexion, $consultaUpdate)) {
                 echo "Record update successfully";
