@@ -9,9 +9,6 @@
     //Creamos objeto de la base de datos
     $db = new BaseDeDatos();
     
-    var_dump($_POST['accionCambiarPerfil']);
-    var_dump($jugador);
-    
     //Commprobamos si la variable global $_POST no está vacía
     if( !empty($_POST) )
     {

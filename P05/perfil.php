@@ -14,8 +14,6 @@
     $puntos = $jugador->getPuntos();
     $id = $jugador->getId();
     
-	var_dump($jugador);
-
 	if (isset($_POST['jugador'])) 
 	{
 		$nombreNuevo = $_POST['nombre'];

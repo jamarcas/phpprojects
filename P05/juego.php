@@ -13,7 +13,6 @@
 	$dado6=$juego->dadoAleatorio(12);
 	
 	$jugador = $_SESSION['jugador'];
-	var_dump($jugador);
 	
 ?>
 
